@@ -19,6 +19,9 @@ import dj_database_url
 
 
 class Dev(Configuration):
+
+  AUTH_USER_MODEL = "blango_auth.User"
+    
   LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -69,7 +72,8 @@ class Dev(Configuration):
   SECRET_KEY = 'django-insecure-&!=9y436&^-bc$qia-mxngyf&xx)@ct)8lu@)=qxg_07-=z01w'
 
   # SECURITY WARNING: don't run with debug turned on in production!
-  DEBUG = values.BooleanValue(True)
+#   DEBUG = values.BooleanValue(True)
+  DEBUG = False
 
   ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0", ".codio.io"])
   X_FRAME_OPTIONS = 'ALLOW-FROM ' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io'
@@ -89,10 +93,11 @@ class Dev(Configuration):
       'django.contrib.sessions',
       'django.contrib.messages',
       'django.contrib.staticfiles',
-      "blog",
-      "crispy_forms",
-      "crispy_bootstrap5",
-      "debug_toolbar",
+      'blango_auth',
+      'blog',
+      'crispy_forms',
+      'crispy_bootstrap5',
+      'debug_toolbar',
   ]
 
   MIDDLEWARE = [
