@@ -1,7 +1,8 @@
 from rest_framework import generics
 
-from blog.api.serializers import PostSerializer
+from blog.api.serializers import PostSerializer, UserSerializer
 from blog.models import Post
+from blango_auth.models import User
 
 from blog.api.permissions import AuthorModifyOrReadOnly, IsAdminUserForObject
 
@@ -15,3 +16,7 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
     permission_classes = [AuthorModifyOrReadOnly | IsAdminUserForObject]
 
+class UserDetail(generics.RetrieveAPIView):
+    lookup_field = "email"
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
