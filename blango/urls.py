@@ -24,6 +24,7 @@ from blango_auth.forms import BlangoRegistrationForm
 import blog.views
 import blango_auth.views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", blog.views.index),
