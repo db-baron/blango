@@ -75,8 +75,8 @@ class Dev(Configuration):
     SECRET_KEY = 'django-insecure-&!=9y436&^-bc$qia-mxngyf&xx)@ct)8lu@)=qxg_07-=z01w'
 
     # SECURITY WARNING: don't run with debug turned on in production!
-    #   DEBUG = values.BooleanValue(True)
-    DEBUG = False
+    DEBUG = values.BooleanValue(True)
+    # DEBUG = False
 
     ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0", ".codio.io"])
     X_FRAME_OPTIONS = 'ALLOW-FROM ' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io'
