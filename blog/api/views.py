@@ -10,6 +10,7 @@ from blog.api.serializers import (
     PostDetailSerializer,
     TagSerializer,
 )
+from blog.api.filters import PostFilterSet
 
 from django.db.models import Q
 from django.utils import timezone
@@ -37,8 +38,10 @@ class TagViewSet(viewsets.ModelViewSet):
         return Response(post_serializer.data)
 
 class PostViewSet(viewsets.ModelViewSet):
+    filterset_class = PostFilterSet
     permission_classes = [AuthorModifyOrReadOnly | IsAdminUserForObject]
     queryset = Post.objects.all()
+    ordering_fields = ["published_at", "author", "title", "slug"]
 
     def get_serializer_class(self):
         if self.action in ("list", "create"):
@@ -84,3 +87,5 @@ class PostViewSet(viewsets.ModelViewSet):
     @method_decorator(vary_on_headers("Authorization", "Cookie"))
     def list(self, *args, **kwargs):
         return super(PostViewSet, self).list(*args, **kwargs)
+    
+    

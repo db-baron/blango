@@ -103,6 +103,7 @@ class Dev(Configuration):
         'debug_toolbar',
         'rest_framework',
         'rest_framework.authtoken',
+        'django_filters',
     ]
 
     MIDDLEWARE = [
@@ -211,7 +212,7 @@ class Dev(Configuration):
         "DEFAULT_PERMISSION_CLASSES": [
             "rest_framework.permissions.IsAuthenticatedOrReadOnly"
         ],
-                "DEFAULT_THROTTLE_CLASSES": [
+        "DEFAULT_THROTTLE_CLASSES": [
             "blog.api.throttling.AnonSustainedThrottle",
             "blog.api.throttling.AnonBurstThrottle",
             "blog.api.throttling.UserSustainedThrottle",
@@ -223,6 +224,13 @@ class Dev(Configuration):
             "user_sustained": "5000/day",
             "user_burst": "100/minute",
         },
+        "DEFAULT_FILTER_BACKENDS": [
+            "django_filters.rest_framework.DjangoFilterBackend"
+        ],
+        "DEFAULT_FILTER_BACKENDS": [
+            "django_filters.rest_framework.DjangoFilterBackend",
+            "rest_framework.filters.OrderingFilter"
+        ],
     }
 
     SWAGGER_SETTINGS = {
