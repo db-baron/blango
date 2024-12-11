@@ -25,7 +25,7 @@ class Dev(Configuration):
     ACCOUNT_ACTIVATION_DAYS = 7
     
     AUTH_USER_MODEL = "blango_auth.User"
-        
+
     LOGGING = {
         "version": 1,
         "disable_existing_loggers": False,
@@ -105,6 +105,7 @@ class Dev(Configuration):
         'rest_framework',
         'rest_framework.authtoken',
         'django_filters',
+        'versatileimagefield',
     ]
 
     MIDDLEWARE = [
@@ -251,6 +252,9 @@ class Dev(Configuration):
         "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
         "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
     }
+
+    MEDIA_ROOT = BASE_DIR / "media"
+    MEDIA_URL = "/media/"
 
 class Prod(Dev):
     DEBUG = False

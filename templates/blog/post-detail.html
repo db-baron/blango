@@ -25,6 +25,13 @@
 {% row %}
     {% col %}
         {% include "blog/post-comments.html" %}
+            {% if post.hero_image %}
+                {% row %}
+                    {% col %}
+                        <img class="img-fluid" src="{{ post.hero_image.url }}">
+                    {% endcol %}
+                {% endrow %}
+            {% endif %}
         {% recent_posts post %}
     {% endcol %}
 {% endrow %}
